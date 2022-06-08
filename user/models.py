@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from simple_history.models import HistoricalRecords
 
 
 class UserManager(BaseUserManager):
@@ -39,6 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
+    history = HistoricalRecords()
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
